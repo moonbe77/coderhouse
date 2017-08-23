@@ -11,6 +11,4 @@ alert (suma)
 alert (resta)
 alert (multiplica)
 alert (division)
-
-
 // este cambio genera un status distinto
