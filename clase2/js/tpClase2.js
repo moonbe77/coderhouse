@@ -1,5 +1,10 @@
-var diaSemana=["lunes","martes","miercoles","jueves","viernes","sabado","domingo"]
+/*
 
+CURSO CAMADA 2390 Bernardo Munz
+
+*/
+
+var diaSemana=["lunes","martes","miercoles","jueves","viernes","sabado","domingo"]
 var diaUsuario = prompt("Escribe un dia de la semana").toLowerCase()
 
 // posición devuelta por indexOf()
