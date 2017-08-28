@@ -2,7 +2,7 @@ var diaSemana=["lunes","martes","miercoles","jueves","viernes","sabado","domingo
 
 var diaUsuario = prompt("Escribe un dia de la semana").toLowerCase()
 
-// posicion devuelta por indexOf()
+// posición devuelta por indexOf()
 var a = diaSemana.indexOf(diaUsuario);
 console.log("IndexOf: "+a) 
 
@@ -24,8 +24,8 @@ for (var i = 0; i < diaSemana.length; i++) {
 }
  
 
-//usando la funcion indexOf()
-console.log("usando la funcion indexOf()")
+//usando la función indexOf()
+console.log("usando la función indexOf()")
     //var element = diaSemana[i]    
 if( a >= 0 && a <= 4 ){        
         console.log("Dia de semana")
@@ -36,6 +36,7 @@ if( a >= 0 && a <= 4 ){
     }else{
         console.log("Dato invalido")
     }
+
 
 
 
