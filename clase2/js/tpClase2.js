@@ -13,7 +13,7 @@ for (var i = 0; i < diaSemana.length; i++) {
         //console.log(element)        
 
         if (i>=0 && i <= 4){
-            console.log("Es dia de semana")
+            console.log("Es día de semana")
         }else{
             console.log("Es fin de semana")
         }
@@ -28,10 +28,10 @@ for (var i = 0; i < diaSemana.length; i++) {
 console.log("usando la función indexOf()")
     //var element = diaSemana[i]    
 if( a >= 0 && a <= 4 ){        
-        console.log("Dia de semana")
+        console.log("Día de semana")
        // console.log(element)         
     }else if(a==5 || a ==6){
-        console.log("fin de semana")
+        console.log("Fin de semana")
         //console.log(element)
     }else{
         console.log("Dato invalido")
