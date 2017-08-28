@@ -7,7 +7,7 @@ for (var i = 0; i < dias.length; i++) {
         console.log('Hoy es', dias[i])
     }
 }
-
+//comprobar con el array
 switch (diaSelUsuario) {
     case 'lunes':
     case 'martes':
