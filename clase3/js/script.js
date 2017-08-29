@@ -19,7 +19,7 @@ var sumar =function (a,b){
     return a+b; //return detiene la ejecucion de la funcion
 }
 
-sumar(55,2)
+//sumar(55,2)
 //console.log(sumar(55,10))
 
 /*var operar = function(a,b,c){
@@ -34,7 +34,8 @@ console.log(operar(1,2,3))
 console.log(resultado[0])
 console.log(resultado[1])*/
 
-var numerosOperar=[2,3,5]
+//pasando datos por array
+/*var numerosOperar=[2,3,5]
 var operar = function(arr){
     var arrayOpera =[]
         arrayOpera[0] = arr[0]+arr[1]+arr[2]
@@ -46,3 +47,13 @@ var resultado = operar(numerosOperar)  //para utilizar el resultado de la suma s
 //console.log(operar(1,2,3))
 console.log(resultado[0])
 console.log(resultado[1])
+*/
+
+//self invoking
+
+var operarAutomatico = (function(a,b){
+    console.log(a+b)
+    return a+b
+})(2,6)
+
+//console.log(operarAutomatico)
