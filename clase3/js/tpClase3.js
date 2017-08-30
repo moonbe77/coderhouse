@@ -1,9 +1,8 @@
-/*Mejorar la calculadora seprando en funciones cada operacione
-
-Debera poder ingresar 2 valores
-Debera poder ingresar que operacion quiere realizar
-Cada operacion tendra que ser una funcion con los 2 paramentros para sumar, restar, multiplicar o dividir;
-Debera mostrar el resultado de la operacion en consola*/
+/*
+Bernardo Munz 
+moonbe77@gmail.com
+camada 2390
+*/
 
 var pedirDatos = function(){
   var datos =[]  
