@@ -40,7 +40,9 @@ var compararDias=function(listadoDias,dia){
                 console.log("Es dia de semana")     
                 return dia           
             }
-        }        
+        } else if (i == 6) {
+            console.log("datos erroneos") 
+        }       
     }
 }
 
