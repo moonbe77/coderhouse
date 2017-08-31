@@ -9,7 +9,7 @@ function Heroe(nombreH, vidaH){
     } */
 }
 
-var pepe = new Heroe ("pepe", 100)
+var pepe = new Heroe ("pipi", 100)
 var tito = new Heroe ("tito", 100)
 
 var golpear = function(heroe){
@@ -26,3 +26,7 @@ while (pepe.vida > 0 && tito.vida > 0) {
     golpear(pepe)
     golpear(tito)
 }
+
+if(pepe.vida <=0){
+    console.log("gano", tito.nombre)
+}else{console.log("Gano",pepe.nombre)}
