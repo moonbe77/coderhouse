@@ -3,14 +3,18 @@
 function Heroe(nombreH, vidaH){
     this.nombre = nombreH
     this.vida = vidaH  
-    this.golpear = Math.floor(Math.random() * 11);
+    /*this.golpear = function (){
+        var g=Math.floor(Math.random() * 11);
+        return g
+    } */
 }
 
 var pepe = new Heroe ("pepe", 100)
 var tito = new Heroe ("tito", 100)
 
 var golpear = function(heroe){
-   heroe.vida = heroe.vida - heroe.golpear
+    var golpe=Math.floor(Math.random() * 11);
+   heroe.vida = heroe.vida - golpe
    console.log("La vida de ",heroe.nombre,"es de",heroe.vida) 
 }
 
