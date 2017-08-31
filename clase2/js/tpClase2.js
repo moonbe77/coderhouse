@@ -1,5 +1,7 @@
 /*
+
 CURSO CAMADA 2390 Bernardo Munz
+
 */
 
 var diaSemana=["lunes","martes","miercoles","jueves","viernes","sabado","domingo"]
@@ -10,9 +12,11 @@ var a = diaSemana.indexOf(diaUsuario);
 console.log("IndexOf: "+a) 
 
 for (var i = 0; i < diaSemana.length; i++) {
+
     if (diaUsuario == diaSemana[i]){
     var element = diaSemana[i]    
-           //console.log(element) 
+        //console.log(element)        
+
         if (i>=0 && i <= 4){
             console.log("Es día de semana")
         }else{
@@ -20,8 +24,7 @@ for (var i = 0; i < diaSemana.length; i++) {
         }
     break
     }else if(i == 6){
-        console.log("Dato invalido") 
-        //pedir de nuevo el dato
+        console.log("Dato invalido")        
     }
 }
  
