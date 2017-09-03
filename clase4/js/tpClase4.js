@@ -17,9 +17,34 @@ function Pelicula (id,titulo,descripcion,anio,duracion,actores,director){
     this.duracion = duracion
     this.actores = actores
     this.director = director
+    this.modTitulo = function(){
+        newTitulo = prompt("mod Tiutlo",this.titulo)
+        this.titulo = newTitulo
+    }
+    this.modDescripcion = function(){
+        newDesc = prompt("mod Descripcion",this.descripcion)
+        this.descripcion = newDesc
+    }
+    this.modAnio = function(){
+        newAnio = prompt("mod anio",this.anio)
+        this.anio = newAnio
+    }
+    this.modDuracion = function(){
+        newDur = prompt("mod duración", this.duracion)
+        this.duracion = newDur
+    }
+    this.modActor = function(){
+        newActor = prompt("mod actor",this.actores)
+        this.actores = newActor
+    }
+    this.modDirector = function(){
+        newDur = prompt("mod director",this.director)
+        this.titulo = newDur
+    }
+    
 }
 
-//var addPelicula = function (){
+
     titulo = prompt("ingresa un nombre")
     desc = prompt("ingresa una descripción")
     anio = prompt("ingresa el añ de la pelicula")
@@ -27,8 +52,6 @@ function Pelicula (id,titulo,descripcion,anio,duracion,actores,director){
     actores = prompt("ingresa nombre de los actores separado por ;")
     dir = prompt("ingresa el nombre del director")   
 
-    var pel1= new Pelicula(id,titulo,desc,anio,dur,actores,dir)
-    id++
-//}
+    var pelicula1= new Pelicula(id,titulo,desc,anio,dur,actores,dir)
+    
 
-//addPelicula()
