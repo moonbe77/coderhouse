@@ -45,12 +45,7 @@ function Pelicula (id,titulo,descripcion,anio,duracion,actores,director){
 }
 
 
-    /*titulo = prompt("ingresa un nombre")
-    desc = prompt("ingresa una descripción")
-    anio = prompt("ingresa el añ de la pelicula")
-    dur = prompt("ingresa la duración en formato -10:15-")
-    actores = prompt("ingresa nombre de los actores separado por ;")
-    dir = prompt("ingresa el nombre del director")*/
+  
 var id=1
 var titulo = "Valerian and the City of a Thousand Planets"
 var desc = "A dark force threatens Alpha, a vast metropolis and home to species from a        thousand planets. Special operatives Valerian and Laureline must race to identify the marauding menace and safeguard not just Alpha, but the future of the universe."
@@ -60,7 +55,7 @@ var actores = ["Dane DeHaan","Cara Delevingne","Clive Owen"]
 var dir = "Luc Besson" 
 
 //creo el objeto pelicula1
-var pelicula1= new Pelicula(id,titulo,desc,anio,dur,actores,dir)
+var pelicula1 = new Pelicula(id,titulo,desc,anio,dur,actores,dir)
 
 //muestro los datos por pantall
 var mostrarPelicula = function(titulo){  
@@ -69,4 +64,13 @@ document.write('id: ',titulo.id,'<br />Titulo: ',titulo.titulo,'<br />Descripci�
 
 }
     
-
+//¿COMO DECLARAR UN NOMBRE AL OBJETO SEGUN EL TITULO INGRESADO POR PROMPT?
+var addPelicula = function(id){
+    titulo = prompt("ingresa un nombre")
+    desc = prompt("ingresa una descripción")
+    anio = prompt("ingresa el añ de la pelicula")
+    dur = prompt("ingresa la duración en formato -10:15-")
+    actores = prompt("ingresa nombre de los actores separado por ;")
+    dir = prompt("ingresa el nombre del director")
+ titulo = new Pelicula(id,titulo,desc,anio,dur,actores,dir)
+}
