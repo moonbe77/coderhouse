@@ -10,20 +10,20 @@ function Personaje (nombre, vida, golpe, turno){
 var jugador1 = new Personaje('hulk', 5000, 2000, false)
 var jugador2 = new Personaje('thor', 4500, 3000, true, 5000)
 
-var accionGolpear =  function (vidaOponente, golpeMax){
+var accionGolpear =  function (vidaOponente, golpeMax, nombreGolpea, nombreRecibe){
     var golpeAtacante = Math.round(Math.random() * golpeMax)
     var resto = vidaOponente - golpeAtacante
-    console.log("el jugador golpeo", golpeAtacante , " y la vida es del oponente ", vidaOponente, " le queda de vida ", resto )
+    console.log(nombreGolpea," golpeo", golpeAtacante , " la vida de ",nombreRecibe,"es ", vidaOponente, " le queda de vida ", resto )
     return resto
 }
 var juego= function(jugador1, jugador2){
     if(jugador1.turno){
-        jugador2.vida = accionGolpear(jugador2.vida, jugador1.golpe)
+        jugador2.vida = accionGolpear(jugador2.vida, jugador1.golpe, jugador1.nombre, jugador2.nombre)
         jugador2.turno = true
         jugador1.turno = false
         
     }else{
-        jugador1.vida = accionGolpear(jugador1.vida, jugador2.golpe)
+        jugador1.vida = accionGolpear(jugador1.vida, jugador2.golpe, jugador2.nombre, jugador1.nombre)
         jugador1.turno = true
         jugador2.turno = false
     }
@@ -34,7 +34,7 @@ while(jugador1.vida > 0 && jugador2.vida > 0){
 }
 
 if(jugador1.vida <= 0){
-    console.log("gano el jugador 2")
+    console.log("gano",jugador2.nombre)
 }else{
-    console.log("gano el jugador 1")
+    console.log("gano",jugador1.nombre)
 }
