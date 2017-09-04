@@ -8,7 +8,7 @@ El objeto pelicula Debera tener ID, titulo, descripcion, año, duracion, actores
 Debera tener metodos para editar todas sus propiedades,
  menos su ID, y para los actores tendra que ir agregando uno a uno
 */
-
+//constructor
 function Pelicula (id,titulo,descripcion,anio,duracion,actores,director){
     this.id = id
     this.titulo = titulo
@@ -17,7 +17,7 @@ function Pelicula (id,titulo,descripcion,anio,duracion,actores,director){
     this.duracion = duracion
     this.actores = actores
     this.director = director
-    this.modTitulo = function(){
+    this.modTitulo = function(){  //metodos
         newTitulo = prompt("mod Tiutlo",this.titulo)
         this.titulo = newTitulo
     }
@@ -43,8 +43,6 @@ function Pelicula (id,titulo,descripcion,anio,duracion,actores,director){
     }
     
 }
-
-
   
 var id=1
 var titulo = "Valerian and the City of a Thousand Planets"
@@ -73,4 +71,5 @@ var addPelicula = function(id){
     actores = prompt("ingresa nombre de los actores separado por ;")
     dir = prompt("ingresa el nombre del director")
  titulo = new Pelicula(id,titulo,desc,anio,dur,actores,dir)
+ id++
 }
