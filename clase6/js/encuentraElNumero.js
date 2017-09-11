@@ -38,7 +38,7 @@ var validarIntentos = function(){
 
 var juegar = function(){
     if(validarIntentos()){
-        var numUsr = Number(prompt("ingresa un numero",0))
+        var numUsr = Number(prompt("ingresa un numero entre 0 y 10",0))
         compararNumeros(nroRandom,numUsr)
     }
 }
