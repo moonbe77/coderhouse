@@ -75,7 +75,7 @@ var AdminPeliculas = function(peli){
         //agregar la pelicula si no existe
     },
     this.existe = function(nombre){
-        //verificar si existe la pelucula
+        //verificar si existe la pelicula
         var arrPeliculas=localStorage.getItem("arrPeliculas").split(",")
         var state = arrPeliculas.indexOf(peli)
         if (state == -1){
