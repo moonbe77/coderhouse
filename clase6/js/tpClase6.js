@@ -17,14 +17,13 @@ El modulo tendra que persistir el array de peliculas en session o local storage 
 
 var crearPeliculas = (function() {
     var pelis;
-    
+        
     function init() {
         function crearArrPeliculas() {
             //este array deberias ser tomado de un lugar externo, archivo o API
-            peliculas = ["batman","super Man","the avengers","crepusculo","harry potter","the hunger game"]
+            peliculas = ["batman","super man","the avengers","crepusculo","harry potter","the hunger game"]
             return peliculas
-        }
-        
+        }        
         return {
             metodoPeliculasCargadas: function() {
                 crearArrPeliculas(); 
@@ -37,8 +36,7 @@ var crearPeliculas = (function() {
                     console.log( "Sorry, your browser does not support Web Storage...")}       
             }
         }
-    }
-    
+    }    
     return {
         crearInstanciaPeliculas: function() {
             if (!pelis) {
@@ -64,18 +62,23 @@ var AdminPeliculas = function(peli){
      return idPeli
     },
     this.pelicula = peli,
-    this.eliminar = function(id){
+    this.eliminar = function(){
         //eliminar la pelicula si existe seleccionando su id
-        var arrPeliculas=localStorage.getItem("arrPeliculas").split(",")
-         arrPeliculas.splice(id,1)
-        localStorage.setItem("arrPeliculas",arrPeliculas); 
-
+        if(selUsuario.existe()){
+            var arrPeliculas=localStorage.getItem("arrPeliculas").split(",")
+             arrPeliculas.splice(selUsuario.id(),1)
+            localStorage.setItem("arrPeliculas",arrPeliculas); 
+        }else{
+            console.log("No existe la pelicula nombre: ", peli)
+        }
     },
-    this.addPelicula = function(id){
-        //agregar la pelicula si no existe
-    },
+<<<<<<< HEAD
     this.existe = function(nombre){
         //verificar si existe la pelicula
+=======
+    this.existe = function(){
+        //verificar si existe la pelucula
+>>>>>>> c6aa202cfb8072d8ea4d3ccf9fc15a2127ae2c64
         var arrPeliculas=localStorage.getItem("arrPeliculas").split(",")
         var state = arrPeliculas.indexOf(peli)
         if (state == -1){
@@ -83,7 +86,6 @@ var AdminPeliculas = function(peli){
         }else{
             return true
         }
-
     }
 }
 
@@ -93,7 +95,8 @@ var selUsuario
 //pedir nombre de la palicula y crear el objeto
 
 var elegirPelicula = function(mensaje){
-    var peliculaUs =  prompt(mensaje).toLowerCase()
+    if (mensaje == ""){mensaje="Pon un nombre de la pelicula"}else{mensaje}
+    var peliculaUs =  prompt(mensaje,localStorage.getItem("arrPeliculas")).toLowerCase()
      selUsuario = new AdminPeliculas(peliculaUs)
 
         console.log(selUsuario.id() , selUsuario.pelicula)
@@ -103,6 +106,11 @@ var elegirPelicula = function(mensaje){
      }
     //return selUsuario
 }
-
+var addPelicula = function(){
+    var peliculaUs =  prompt("Ingresa el nombre").toLowerCase()
+    var arrPeliculas=localStorage.getItem("arrPeliculas").split(",")
+    arrPeliculas.push(peliculaUs)
+    localStorage.setItem("arrPeliculas",arrPeliculas); 
+}
 
 elegirPelicula("Pon un nombre de la pelicula")
