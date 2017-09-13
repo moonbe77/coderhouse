@@ -72,13 +72,8 @@ var AdminPeliculas = function(peli){
             console.log("No existe la pelicula nombre: ", peli)
         }
     },
-<<<<<<< HEAD
     this.existe = function(nombre){
         //verificar si existe la pelicula
-=======
-    this.existe = function(){
-        //verificar si existe la pelucula
->>>>>>> c6aa202cfb8072d8ea4d3ccf9fc15a2127ae2c64
         var arrPeliculas=localStorage.getItem("arrPeliculas").split(",")
         var state = arrPeliculas.indexOf(peli)
         if (state == -1){
