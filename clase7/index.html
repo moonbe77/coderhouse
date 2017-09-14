@@ -1,15 +1,83 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title></title>
+        <title>Clase 7</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--<link href="style/style.css" rel="stylesheet">-->
     </head>
     <body>
-        <h2>Clase 7</h2>
-        <p>curso 2390</p>
-        <p>Hola Mundo!</p>
-    <script src="js/script.js"></script>
+        <div id="container">
+            <h1>Titulo</h1>
+            <ul class="list">
+                <li class="item">te</li>
+                <li class="item">cafe</li>
+            </ul>            
+            <p>Culpa ut veniam pariatur enim elit proident qui. Lorem ut mollit ullamco ut voluptate. Aliqua dolor occaecat ad enim laborum mollit et cillum et elit ex mollit. Nulla quis velit aliqua velit occaecat eiusmod officia.  </p>
+            
+            <input type="text" name="txt1" value="input 1">
+            <input type="text" name="txt1" value="input 2">
+            <textarea rows="" name="txt1" cols=""></textarea>
+            <select>
+                <option value="rojo">Rojo</option>
+                <option value="azul">Azul</option>
+                <option value="negro">Negro</option>
+            </select>
+            <a id="anchor" href="#"></a>
+
+        </div>
+<!--<script src="js/script.js"></script>-->
+<script>
+    function getParentNode (){
+        var parent = document.getElementById("container").parentNode
+        console.log(parent)         
+    }
+    //getParentNode()
+
+    function getChildNode (){
+        var child = document.getElementById("container").childNodes
+        console.log(child)
+    }
+    //getChildNode()
+
+    function getFirstChild (){
+        var firstChild = document.getElementById("container").firstElementChild
+        console.log(firstChild)
+    }
+    //getFirstChild()
+
+    function getLastChild (){
+        var lastChild = document.getElementById("container").lastElementChild
+        console.log(lastChild)
+    }
+    //getLastChild()
+
+    function getClassName (){
+        var hermanosPrevio = document.getElementsByClassName("list")[0].previousElementSibling //devuleve el hermano previo el indice [0] es lorque getElementByClassName devuelve un array con todos sus hijos
+        var yo = document.getElementsByClassName("list")
+        var hermanosSiguiente = document.getElementsByClassName("list")[0].nextElementSibling //devuelve el hermano siguiente 
+
+        for (var i = 0; i < yo.length; i++) {
+            var element = yo[i].previousElementSibling            
+        }
+        console.log(element)
+    }
+    //getClassName()
+
+
+    function addColor (color){
+    var selector = document.querySelector("select")
+    var newOption = document.createElement("option")
+    var contenido = document.createTextNode(color)
+    newOption.appendChild(contenido)
+    selector.appendChild(newOption)
+}
+
+function attr (atrr){
+    var anchor = document.querySelector("#anchor").atrr
+    console.log(anchor)
+}
+
+</script>
     </body>
 </html>
