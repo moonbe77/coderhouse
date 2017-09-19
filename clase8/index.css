@@ -1,0 +1,46 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: grey;
+    height: 100px;
+    text-align: center;
+    -webkit-transition: font-size width 2s;
+    /* Safari */
+    transition: font-size 2s;
+    vertical-align: middle;
+    width: 100%;
+}
+
+main {
+    background-color: lightseagreen;
+    box-sizing: border-box;
+    margin: 20px 0px;
+    padding: 15px;
+    height: 150px;
+}
+
+form input {
+    margin-top: 30px;
+}
+
+main select {
+    margin-top: 30px;
+}
+
+.cuadrado {
+    border: solid 2px black;
+    border-radius: 100px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 20px;
+    height: 100px;
+    width: 100px;
+}
+
+.claseNueva {
+    border: sienna 10px solid;
+}
