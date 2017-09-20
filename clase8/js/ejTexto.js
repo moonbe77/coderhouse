@@ -42,6 +42,7 @@ var analizarParrafo = function (texto){
         }
 
     var arrLet=texto.split("")
+
     //Pasar a mayuscula despues del punto
     for (var p = 0; p < arrLet.length; p++) {
         var caracter = arrLet[p]  
@@ -50,8 +51,9 @@ var analizarParrafo = function (texto){
                 var letra = arrLet[p+1]  //cree esta variable para ver si no me daba el error la funcion toUpperCase linea 36
                 arrLet[p+1]=letra.toUpperCase() // me da error pero hace lo que tiene que hacer
             arrLet[p] = ". "
-            cantidadEspaciosPuntosLetras.qtyPuntos++ //cuento la cantidad de puntos
-            }
+           } 
+           
+         cantidadEspaciosPuntosLetras.qtyPuntos++ //cuento la cantidad de puntos             
         }
 
         if (caracter == "a" || caracter == "e" ||caracter == "i" || caracter == "o" || caracter == "u") {
