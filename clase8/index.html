@@ -7,7 +7,11 @@
         <!--<link href="style/style.css" rel="stylesheet">-->
     </head>    
     <body>
-        <p>Parrafo Origina</p>
+        <form >
+            <textarea name="parrafo" id="parrafo" cols="30" rows="10"></textarea>
+            <button type="submit" id="send" onclick="recibirTexto(event)">Enviar</button>
+        </form>
+       <p>parrafo Original</p>
         <p id="parrafoOriginal"></p>
         <p>Parrafo Editado</p>        
         <p id="parrafoEditado"></p>
