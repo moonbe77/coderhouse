@@ -1,8 +1,6 @@
 var creatVisual = function (newText,cantidadEspaciosPuntosLetras){
-
     var parrafoOriginal = document.getElementById("parrafoOriginal")
-    parrafoOriginal.innerText = texto
-    
+    parrafoOriginal.innerText = texto    
     var parrafoEditado = document.getElementById("parrafoEditado")
     parrafoEditado.innerText = newText
     
@@ -13,9 +11,7 @@ var creatVisual = function (newText,cantidadEspaciosPuntosLetras){
     var letras = document.getElementById("letras")
     letras.innerText = "Lestras" +cantidadEspaciosPuntosLetras.qtyLetras
     var vocales = document.getElementById("vocales")
-    vocales.innerText = "Vocales" +cantidadEspaciosPuntosLetras.qtyVocales
-    
-    
+    vocales.innerText = "Vocales" +cantidadEspaciosPuntosLetras.qtyVocales 
     
     console.log("Qty Puntos = ",cantidadEspaciosPuntosLetras.qtyPuntos)
     console.log("Qty Espacios = ",cantidadEspaciosPuntosLetras.qtyEspacios)
@@ -23,3 +19,4 @@ var creatVisual = function (newText,cantidadEspaciosPuntosLetras){
     console.log("Qty Vocales = ",cantidadEspaciosPuntosLetras.qtyVocales)
     console.log(newText)
 }
+
