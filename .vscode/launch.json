@@ -1,11 +1,12 @@
 {
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "file:///C:/Users/moonb/CoderHouse/progWeb/clase4/index.html",
+            "url": "file:///C:/inetpub/wwwroot/CH/coderhouse/clase11/index.html",
             "webRoot": "${workspaceRoot}"
         },
         {
