@@ -1,13 +1,13 @@
 /*
 **cargar texto desde textarea
 **al presionar una tecla escribiendo en el textarea recalcular los datos
-**al presionar el boton formatear texto dar espacio despues de los puntos y poner en mayuscula
 **
 */
 var parrafo = $("#parrafo").val();
-
+const regExVocales = /[aeiou]/ig  //la i es par que no sea case-insensitive
+const regExLetra = /([a-z])/ig   // expresion para validar si es letra
 var datosParrafo = {
-    qtyLetras : 0,
+    qtyCaracteres : 0,
     qtyVocales : 0,
     qtyPuntos : 0,
     qtyEspacios : 0,
@@ -19,38 +19,29 @@ app = function() {
     myApp.init = function() {
         $(document).ready(function() {
             console.log("-----Se inicio  la app-----------");
-            analizar();
-            actualizarDatos()
-            //cargarDatos();
-            //cargarDatosLocales();
-
+            analizar();           
         });
     }();
     return myApp;
 }();
 
 var analizar = function () {
-    contarLetras()
+   // contarLetras()
     contarDatos()    
 } 
+
 //accion al teclear texto en el textarea
 $('#parrafo').keyup(function (e) {
       analizar()                
     })
 
-
-
-var contarLetras =function(){
-    parrafo = $("#parrafo").val()
-//cantida de letras
-    letras = parrafo.length
-    datosParrafo.qtyLetras = letras
-    return letras
-}
-
 var contarDatos =function(){
+    parrafo = $("#parrafo").val()
+    //cantida de caracteres       
+        datosParrafo.qtyCaracteres = parrafo.length
+
     //cantidad de vocales
-    const regexVocales = /[aeiou]/i  
+    
     var parrafoArray= parrafo.split("")
     var vocales = 0
     var espacios = 0
@@ -58,24 +49,43 @@ var contarDatos =function(){
     var newTexto = ""
 
     for (var i = 0; i < parrafoArray.length; i++) {
+
         //Cantidad de vocales
-            if (regexVocales.test(parrafoArray[i])) {
+            if (regExVocales.test(parrafoArray[i])) {
                 vocales ++                                
             }
         //cantidad de espacios
             if (parrafoArray[i] == " ") {
-                espacios ++
+                espacios ++             
+                //console.log("soy un espacio")                
             }        
+
             //formateado de letras    
             if (parrafoArray[i] == "." ){
+
+                if (parrafoArray[i+1] == " " && parrafoArray[i+2] != undefined ){  
+                    //letra siguiente a un punto con espacios en mayusculas  / el condicional != undefined es para que no de error el metodo toUpperCase en el ultimo punto del texto
+                    var letra = parrafoArray[i+2]
+                    parrafoArray[i+2]=letra.toUpperCase() 
+                    //console.log("mayuscula despues punto espacio")
+                }
+
                 if(parrafoArray[i+1] != undefined){
-                    var letra = parrafoArray[i+1]  //cree esta variable para ver si no me daba el error la funcion toUpperCase linea 36
-                    parrafoArray[i+1]=letra.toUpperCase() // me da error pero hace lo que tiene que hacer
+                    var letra = parrafoArray[i+1]  
+                    parrafoArray[i+1]=letra.toUpperCase() 
                     parrafoArray[i] = ". "
                     newTexto += parrafoArray[i]
+                   // console.log("soy letra despues de un punto")
                 }
+
+                if(parrafoArray[i] == parrafoArray.length){
+                    //var letra = parrafoArray[i+1] 
+                    parrafoArray[i] = "."
+                    newTexto += parrafoArray[i]
+                    console.log("soy la ultima letra")
+                }    
                 //cantidad de puntos
-                puntos ++
+                    puntos ++
             }else{
                 newTexto += parrafoArray[i]
             }
@@ -86,20 +96,10 @@ var contarDatos =function(){
         datosParrafo.txtNew = newTexto
 
         actualizarDatos(datosParrafo)
-}
-
-
-     
-
-//dar formato
-var darFormato = function() {
-    $("#formatear").on("click", function () {
-        alert(parrafo)
-})
-}
+} 
 
 var actualizarDatos = function (datosParrafo){
-    $('#qtyLetras').text(datosParrafo.qtyLetras)
+    $('#qtyLetras').text(datosParrafo.qtyCaracteres)
     $('#qtyPuntos').text(datosParrafo.qtyPuntos)
     $('#qtyEspacios').text(datosParrafo.qtyEspacios)
     $('#qtyVocales').text(datosParrafo.qtyVocales)
