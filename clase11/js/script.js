@@ -52,16 +52,13 @@ var contarDatos =function(){
 
         //Cantidad de vocales
             if (regExVocales.test(parrafoArray[i])) {
-                vocales ++                                
-            }
-        //cantidad de espacios
-            if (parrafoArray[i] == " ") {
-                espacios ++             
+                vocales ++  
+                newTexto += parrafoArray[i]                              
+            }else if (parrafoArray[i] == " ") {//cantidad de espacios
+                espacios ++    
+                newTexto += parrafoArray[i]         
                 //console.log("soy un espacio")                
-            }        
-
-            //formateado de letras    
-            if (parrafoArray[i] == "." ){
+            } else if (parrafoArray[i] == "." ){//formateado de letras   
 
                 if (parrafoArray[i+1] == " " && parrafoArray[i+2] != undefined ){  
                     //letra siguiente a un punto con espacios en mayusculas  / el condicional != undefined es para que no de error el metodo toUpperCase en el ultimo punto del texto
