@@ -90,7 +90,8 @@ var selUsuario
 //pedir nombre de la palicula y crear el objeto
 
 var elegirPelicula = function(mensaje){
-    if (mensaje == ""){mensaje="Pon un nombre de la pelicula"}else{mensaje}
+    if (mensaje == null){mensaje="Pon un nombre de pelicula"}else{mensaje}
+
     var peliculaUs =  prompt(mensaje,localStorage.getItem("arrPeliculas")).toLowerCase()
      selUsuario = new AdminPeliculas(peliculaUs)
 
