@@ -31,12 +31,12 @@ var crearPeliculas = (function() {
         function crearArrPeliculas() {
             //este array deberias ser tomado de un lugar externo, archivo o API MODIFICADO EL CRITERIO
             peliculas = [
-                {id:1, name:"batman", desc:"alguna descripcion", img:"http://urlImagen.com"},
-                {id:2, name:"super man", desc:"alguna descripcion", img:"http://urlImagen.com"},
-                {id:3, name:"the avengers", desc:"alguna descripcion", img:"http://urlImagen.com"},
-                {id:4, name:"crepusculo", desc:"alguna descripcion", img:"http://urlImagen.com"},
-                {id:5, name:"harry potter", desc:"alguna descripcion", img:"http://urlImagen.com"},
-                {id:6, name:"the hunger game", desc:"alguna descripcion", img:"http://urlImagen.com"}
+                {id:1, name:"batman", desc:"alguna descripcion", img:"https://www.w3schools.com/html/html5.gif"},
+                {id:2, name:"super man", desc:"alguna descripcion", img:"https://www.w3schools.com/html/html5.gif"},
+                {id:3, name:"the avengers", desc:"alguna descripcion", img:"https://www.w3schools.com/html/html5.gif"},
+                {id:4, name:"crepusculo", desc:"alguna descripcion", img:"https://www.w3schools.com/html/html5.gif"},
+                {id:5, name:"harry potter", desc:"alguna descripcion", img:"https://www.w3schools.com/html/html5.gif"},
+                {id:6, name:"the hunger game", desc:"alguna descripcion", img:"https://www.w3schools.com/html/html5.gif"}
             ]
             if(localStorage.getItem("arrPeliculas") == null){
                 // Check browser support
@@ -123,7 +123,7 @@ var elegirPelicula = function(mensaje){
    // mostrarPeliculas()
 }
 
-var renderDom = function (h1,p,desc,img){
+var renderDom = function (h1,p,img){
     var contenedor = document.querySelector("#contenedor") 
     var nodoH1 = document.createElement("h1");                
     var nodoP = document.createElement("p");                
@@ -136,7 +136,7 @@ var renderDom = function (h1,p,desc,img){
     nodoImg.appendChild(textImg);                              
    contenedor.appendChild(nodoH1); 
    contenedor.appendChild(nodoP); 
-   contenedor.appendChild(nodoImg); 
+   contenedor.appendChild(nodoImg).src = img;
 }
 
 var addPelicula = function(){
