@@ -10,24 +10,34 @@ var Personaje = {
 $(document).ready(function(){
     var contenedor = $('.ships')
     var result
+var callApi = function (url) {
     $.ajax({
         type:"json",
-        url: "https://swapi.co/api/people/",
+        url: url,
         //data: "",
         type: "get",
         dataType: "json",
-        success: function (response) {       
+    success: function (response) {       
         console.log(response)
-        result = response.results                 
+        result = response.results
+                 
     },
-        error: function(data){
+    error: function(data){
         console.log("ERROR")
     },
-        complete: function (xhr,status){
+    complete: function (response,xhr,status){
             console.log("COMPLETO")  
             addHome(result)
+            /*if  (response.next == null){
+                console.log("no hay mas paginas")
+            }else{
+                console.log(response.next)
+                callApi(response.next)
+            }*/
     }
-});
+})
+}
+   
 
 var returnHomeworld = function (url) { 
     $.ajax({
@@ -73,4 +83,6 @@ var mostrar = function (p){
     '<td>'+p.species+'</td>'+ 
     '</tr>')
 }
+
+callApi( "https://swapi.co/api/people/" )
 })

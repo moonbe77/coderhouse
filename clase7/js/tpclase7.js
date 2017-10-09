@@ -29,7 +29,7 @@ var crearPeliculas = (function() {
     
     function init() {
         function crearArrPeliculas() {
-            //este array deberias ser tomado de un lugar externo, archivo o API MODIFICADO EL CRITERIO
+            //este array deberias ser tomado de un lugar externo, archivo 
             peliculas = [
                 {id:1, name:"batman", desc:"alguna descripcion", img:"https://www.w3schools.com/html/html5.gif"},
                 {id:2, name:"super man", desc:"alguna descripcion", img:"https://www.w3schools.com/html/html5.gif"},
