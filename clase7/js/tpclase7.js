@@ -137,7 +137,7 @@ var mostrarPeliculas = function(){
     var arrPeliculas=localStorage.getItem("arrPeliculas").split(",")
     for ( var i=0; i < arrPeliculas.length; i++){
        // console.log("awsdf: ",i)
-        renderDom(arrPeliculas[i])
+        renderDom(arrPeliculas[i].name)
     }
 }
 
