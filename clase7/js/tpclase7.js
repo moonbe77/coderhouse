@@ -30,12 +30,19 @@ var crearPeliculas = (function() {
     function init() {
         function crearArrPeliculas() {
             //este array deberias ser tomado de un lugar externo, archivo o API MODIFICADO EL CRITERIO
-            peliculas = [{name:"batman"},{name:"super man"},{name:"the avengers"},{name:"crepusculo"},{name:"harry potter"},{name:"the hunger"},{name:"game"}]
+            peliculas = [
+                {id:1, name:"batman", desc:"alguna descripcion", img:"http://urlImagen.com"},
+                {id:2, name:"super man", desc:"alguna descripcion", img:"http://urlImagen.com"},
+                {id:3, name:"the avengers", desc:"alguna descripcion", img:"http://urlImagen.com"},
+                {id:4, name:"crepusculo", desc:"alguna descripcion", img:"http://urlImagen.com"},
+                {id:5, name:"harry potter", desc:"alguna descripcion", img:"http://urlImagen.com"},
+                {id:6, name:"the hunger game", desc:"alguna descripcion", img:"http://urlImagen.com"}
+            ]
             if(localStorage.getItem("arrPeliculas") == null){
                 // Check browser support
                 if (typeof(Storage) !== "undefined") {
                     // Store
-                    localStorage.setItem("arrPeliculas",peliculas);                    
+                    localStorage.setItem("arrPeliculas",JSON.stringify(peliculas));                    
                 } else {
                     console.log( "Sorry, your browser does not support Web Storage...")
                 }
@@ -64,7 +71,7 @@ var crearPeliculas = (function() {
 var testeoInstancia = crearPeliculas.crearInstanciaPeliculas();
 console.log(testeoInstancia.metodoPeliculasCargadas())
 // Retrieve
-var arrPeliculas=localStorage.getItem("arrPeliculas").split(",")
+var arrPeliculas=JSON.parse(localStorage.getItem("arrPeliculas"))
 console.log(arrPeliculas ) //es string
 
 var selUsuario
@@ -116,12 +123,20 @@ var elegirPelicula = function(mensaje){
    // mostrarPeliculas()
 }
 
-var renderDom = function (valor){
+var renderDom = function (h1,p,desc,img){
     var contenedor = document.querySelector("#contenedor") 
-    var node = document.createElement("p");                
-    var textnode = document.createTextNode(valor);
-    node.appendChild(textnode);                              
-   contenedor.appendChild(node); 
+    var nodoH1 = document.createElement("h1");                
+    var nodoP = document.createElement("p");                
+    var nodoImg = document.createElement("img");                
+    var textH1= document.createTextNode(h1);
+    var textP= document.createTextNode(p);
+    var textImg= document.createTextNode(img);
+    nodoH1.appendChild(textH1);                              
+    nodoP.appendChild(textP);                              
+    nodoImg.appendChild(textImg);                              
+   contenedor.appendChild(nodoH1); 
+   contenedor.appendChild(nodoP); 
+   contenedor.appendChild(nodoImg); 
 }
 
 var addPelicula = function(){
@@ -133,11 +148,10 @@ var addPelicula = function(){
 }
 
 var mostrarPeliculas = function(){
-    contenedor.innerHTML = ""
-    var arrPeliculas=localStorage.getItem("arrPeliculas").split(",")
-    for ( var i=0; i < arrPeliculas.length; i++){
+    contenedor.innerHTML = ""    
+    for ( var i in arrPeliculas){
        // console.log("awsdf: ",i)
-        renderDom(arrPeliculas[i].name)
+        renderDom(arrPeliculas[i].name,arrPeliculas[i].desc,arrPeliculas[i].img)
     }
 }
 
