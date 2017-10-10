@@ -1,87 +1,121 @@
 var url
-var Personaje = {
-    name:"",
-    birth_year:"",
-    homeworld:"",
-    film:"",
-    species:""
+var page=0
+var arrayObjetosPersonajes = []
+var Personaje = function (name,birth,homeworld,films,species){
+    this.name = name,
+    this.birth_year = birth,
+    this.homeworld = homeworld,
+    this.films = films,
+    this.species = species 
 }
+
 
 $(document).ready(function(){
     var contenedor = $('.ships')
     var result
+
+
 var callApi = function (url) {
+  $(".loader").show()  
     $.ajax({
+        async:false,
         type:"json",
         url: url,
         //data: "",
         type: "get",
         dataType: "json",
     success: function (response) {       
-        console.log(response)
-        result = response.results
-                 
+        result = response.results 
+        //console.log(result)
+        
     },
     error: function(data){
         console.log("ERROR")
     },
-    complete: function (response,xhr,status){
-            console.log("COMPLETO")  
-            addHome(result)
-            /*if  (response.next == null){
+    complete: function (xhr,status){
+            console.log("COMPLETO pagina: "+page)
+            page++
+            //console.log(xhr)
+            cargaDePersonajes(result)
+            //instancia para recorrer las paginas de la api
+           if  (xhr.responseJSON.next == null){
                 console.log("no hay mas paginas")
+                $(".loader").hide()
+                returnHomeworld(0)
             }else{
-                console.log(response.next)
-                callApi(response.next)
-            }*/
+                //console.log(xhr.responseJSON.next)
+                callApi(xhr.responseJSON.next)
+            }
+            /*returnHomeworld()
+            $(".loader").hide()*/
     }
 })
 }
    
-
-var returnHomeworld = function (url) { 
-    $.ajax({
-        type: "get",
-        url: url,
-        dataType: "json",
-        success:function (response){
-            console.log("Origen: ",{response})
-            Personaje.homeworld=response.name
-            mostrar (Personaje)
-        }
-    });
-}
-
-
-// console.log(value)  
-//var casa = returnHomeworld(value.homeworld)
-/*$.get(value.homeworld, function (data, textStatus, jqXHR) {
-    console.log("Origen: ",data.name)
-    return  data
-});   */  
-//console.log(casa) 
-
-var addHome = function (result){
+var cargaDePersonajes = function (result){
+    $(".loader").show() 
     for (var datos in result) {
-        var value = result[datos] 
-        console.log(value)
-        Personaje.name=value.name
-        Personaje.birth_year=value.birth_year        
-        Personaje.film=value.films
-        Personaje.species=value.species
-        returnHomeworld(value.homeworld)        
+        var value = result[datos]
+        var crearObjetoPersonaje = new Personaje (value.name,value.birth_year,value.homeworld,value.films,value.species)
+        arrayObjetosPersonajes.push(crearObjetoPersonaje)           
     } 
+   // console.log(arrayObjetosPersonajes) 
+    //returnHomeworld(0)  
 }
 
-var mostrar = function (p){
-    console.log("home: ",p.homeworld)    
+
+var returnHomeworld = function (i) {         
+    console.log("iterador:",i)
+    var items = Number(arrayObjetosPersonajes.length)
+    console.log("items",items)
+    if(i <= items){
+        $.ajax({
+            async:true,
+            type: "get",
+            url: arrayObjetosPersonajes[i].homeworld,
+            dataType: "json",
+            success:function (response){
+                    $.ajax({
+                        async:true,
+                        type: "get",
+                        url: arrayObjetosPersonajes[i].species,
+                        dataType: "json",
+                        success:function (responseSpecies){
+                            arrayObjetosPersonajes[i].homeworld = response.name
+                            arrayObjetosPersonajes[i].species = responseSpecies.name
+                            mostrar (arrayObjetosPersonajes[i],i)
+                            
+                        },
+                        error: function(){
+                            console.log("error")
+                        },
+                        complete: function(){
+                            i++
+                            returnHomeworld(i)
+                        }
+                    }); 
+                },
+                error: function(){
+                    console.log("error")
+                }
+                                                      
+            });
+        }            
+}
+
+
+var mostrar = function (p,indice){
+   // console.log("home: ",p.homeworld) 
+     
     contenedor.append('<tr>'+
+    '<td>'+indice+'</td>'+
     '<td>'+p.name+'</td>'+
     '<td>'+p.birth_year +'</td>'+//llamaar a una funcion que devuelva los nombres 
     '<td class="nameWorld">'+p.homeworld+'</td>'+                             
     //'<td>'+p.film+'</td>'+ 
     '<td>'+p.species+'</td>'+ 
     '</tr>')
+    $(".loader").hide() 
 }
 
 callApi( "https://swapi.co/api/people/" )
