@@ -9,11 +9,9 @@ var Personaje = function (name,birth,homeworld,films,species){
     this.species = species 
 }
 
-
 $(document).ready(function(){
     var contenedor = $('.ships')
     var result
-
 
 var callApi = function (url) {
   $(".loader").show()  
