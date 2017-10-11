@@ -1,4 +1,3 @@
-var url
 var page=0
 var arrayObjetosPersonajes = []
 var Personaje = function (name,birth,homeworld,films,species){
@@ -13,22 +12,23 @@ $(document).ready(function(){
     var contenedor = $('.ships')
     var result
 
-var callApi = function (url) {
-  $(".loader").show()  
+var callApi = function (nextUrl) {   
     $.ajax({
-        async:false,
         type:"json",
-        url: url,
+        url: nextUrl,
         //data: "",
         type: "get",
         dataType: "json",
+    beforeSend: function (nextUrl) {
+           console.log("///////////////"+nextUrl)
+           $("#mensajes").text("Buscando Personajes en " + nextUrl )
+        },
     success: function (response) {       
         result = response.results 
-        //console.log(result)
-        
+        //console.log(result)        
     },
     error: function(data){
-        console.log("ERROR")
+        console.log("ERROR spices")
     },
     complete: function (xhr,status){
             console.log("COMPLETO pagina: "+page)
@@ -42,7 +42,7 @@ var callApi = function (url) {
                 returnHomeworld(0)
             }else{
                 //console.log(xhr.responseJSON.next)
-                callApi(xhr.responseJSON.next)
+                callApi(xhr.responseJSON.next)                             
             }
             /*returnHomeworld()
             $(".loader").hide()*/
@@ -54,6 +54,7 @@ var cargaDePersonajes = function (result){
     $(".loader").show() 
     for (var datos in result) {
         var value = result[datos]
+        $("#mensajes").text("Cargando Personajes en " + value.name )
         var crearObjetoPersonaje = new Personaje (value.name,value.birth_year,value.homeworld,value.films,value.species)
         arrayObjetosPersonajes.push(crearObjetoPersonaje)           
     } 
@@ -73,28 +74,35 @@ var returnHomeworld = function (i) {
             url: arrayObjetosPersonajes[i].homeworld,
             dataType: "json",
             success:function (response){
+                },
+                error: function(){
+                    console.log("error")
+                },
+                complete: function(xhr,status){
                     $.ajax({
                         async:true,
                         type: "get",
                         url: arrayObjetosPersonajes[i].species,
                         dataType: "json",
                         success:function (responseSpecies){
-                            arrayObjetosPersonajes[i].homeworld = response.name
-                            arrayObjetosPersonajes[i].species = responseSpecies.name
-                            mostrar (arrayObjetosPersonajes[i],i)
-                            
+                            console.log("Carga de homeworld")
                         },
                         error: function(){
-                            console.log("error")
+                            console.log("spices error"+status)
+                            arrayObjetosPersonajes[i].homeworld = xhr.responseJSON.name
+                            arrayObjetosPersonajes[i].species = "no hay dato"
+                            mostrar (arrayObjetosPersonajes[i],i)
+                            i++
+                            returnHomeworld(i)
                         },
-                        complete: function(){
+                        complete: function(xhrSpecies){                            
+                            arrayObjetosPersonajes[i].homeworld = xhr.responseJSON.name
+                            arrayObjetosPersonajes[i].species = xhrSpecies.responseJSON.name
+                            mostrar (arrayObjetosPersonajes[i],i)
                             i++
                             returnHomeworld(i)
                         }
-                    }); 
-                },
-                error: function(){
-                    console.log("error")
+                    });
                 }
                                                       
             });
