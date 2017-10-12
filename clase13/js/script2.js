@@ -36,19 +36,19 @@ var callApi = function (nextUrl) {
         //data: "",
         type: "get",
         dataType: "json",
-        ajaxSend: function (){
-            $(".loader").show() 
-            alert("ajaxSend")           
-        },
-        success: function (response) {
+        beforeSend: function (nextUrl) {
+            //console.log("///////////////"+nextUrl)
+            $("#mensajes").text("Buscando Personajes en " + nextUrl )
+            },
+        success: function (response) {       
             result = response.results 
             cargaDePersonajes(result)        
         },
-        error: function(status){
-            console.log("ERROR CARGA de  personajes")
+        error: function(data){
+            console.log("ERROR spices")
         },
         complete: function (xhr,status){
-                console.log("CARGADA pagina: "+page)
+                console.log("COMPLETO pagina: "+page)
                 page++
                 PersonajesCargarados +=result.length                            
 
@@ -70,69 +70,69 @@ var callApi = function (nextUrl) {
     })
 }
    
-//push de personajes es un for porque la api devuelve 10 personajes por consulta
 var cargaDePersonajes = function (result){    
     for (var datos in result) {
-        var value = result[datos]        
+        var value = result[datos]
+        $("#mensajes").text("Cargando Personajes en " + value.name )
         var crearObjetoPersonaje = new Personaje (value.name,value.birth_year,value.homeworld,value.films,value.species)
         arrayObjetosPersonajes.push(crearObjetoPersonaje)       
-    }        
+    }     
+   // console.log(arrayObjetosPersonajes) 
+    //returnHomeworld(0)  
 }
 
-var returnHomeworld = function (i) {
-    console.log("*********")         
+
+var returnHomeworld = function (i) {         
     console.log("iterador:",i)
     var items = Number(arrayObjetosPersonajes.length)
     console.log("items",items)
-    if(i <= items-1){
+    if(i <= items){
         $.ajax({
+            async:true,
             type: "get",
             url: arrayObjetosPersonajes[i].homeworld,
             dataType: "json",
             success:function (response){
                 $(".loader").show()
-                console.log("Carga de homeworld")
                 },
                 error: function(){
-                    console.log("/////// ERROR HomeWorld ////////")
+                    console.log("ERROR HomeWorld")
                     arrayObjetosPersonajes[i].homeworld = "no hay dato"
                 },
                 complete: function(xhr,status){
-                    //almaceno el resultado de homeworld
                     arrayObjetosPersonajes[i].homeworld = xhr.responseJSON.name
                     $.ajax({
+                        async:true,
                         type: "get",
                         url: arrayObjetosPersonajes[i].species,
                         dataType: "json",
                         success:function (responseSpecies){
-                            console.log("Carga de Species")
+                            console.log("Carga de homeworld")
                         },
                         error: function(xhr){
-                            console.log("///// ERROR spices ///////")
+                            console.log("spices error" + status)                            
                             arrayObjetosPersonajes[i].species = "no hay dato"
-                          // mostrar (arrayObjetosPersonajes[i],i+1)
+                            mostrar (arrayObjetosPersonajes[i],i)
                             i++
                             returnHomeworld(i)
                         },
-                        complete: function(xhrSpecies){
-                            console.log(xhrSpecies)
-                            if( xhrSpecies.responseJSON ){                          
-                                arrayObjetosPersonajes[i].species = xhrSpecies.responseJSON.name 
-                            }                    
-                            mostrar (arrayObjetosPersonajes[i],i+1)
+                        complete: function(xhrSpecies){                            
+                            
+                            arrayObjetosPersonajes[i].species = xhrSpecies.responseJSON.name
+                            mostrar (arrayObjetosPersonajes[i],i)
                             i++
                             returnHomeworld(i)
                         }
                     });
                 }                                                      
         });
-    }          
+    }            
 }
 
 
 var mostrar = function (p,indice){
-   // console.log("home: ",p.homeworld)   
-   $("#mensajes").text("Cargando Personajes en " + p.name )   
+   // console.log("home: ",p.homeworld) 
+     
     contenedor.append('<tr>'+
     '<td>'+indice+'</td>'+
     '<td>'+p.name+'</td>'+
@@ -141,9 +141,7 @@ var mostrar = function (p,indice){
     //'<td>'+p.film+'</td>'+ 
     '<td>'+p.species+'</td>'+ 
     '</tr>')  
-      $(".loader").hide()       
-    console.log("Render en DOM")  
-    console.log("*********")  
+      $(".loader").hide() 
 }
 
 $(".loader").hide() 

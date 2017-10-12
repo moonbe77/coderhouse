@@ -18,7 +18,7 @@
   height: 120px;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
-  position: absolute;
+  position: fixed;
     top: 40%;
     right: 40%;
 }
@@ -42,7 +42,8 @@
 <body>
     <h2>Clase 13 - AJAX</h2>
     <div id="opciones">
-        <h2>Indica la cantidad de personajes a cargar 0 son todos</h2><input type="number" name="qty" id="qty" max="87" step="10"> 
+        <h2>Indica la cantidad de personajes a cargar 0 son todos</h2>
+        <input type="number" name="qty" id="qty" min="0" max="9" placeholder="0"> 
         <button id="btnCargar">Cargar</button></div>
     <div id="mensajes"></div>
     <div >
