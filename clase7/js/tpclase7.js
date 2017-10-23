@@ -14,7 +14,6 @@ El modulo tendra que eliminar una pelicula por ID
 El modulo tendra que ordernar su array de pelicuas en base a una propiedad enviada por paramentro y mostrarlo en consola
 El modulo tendra que persistir el array de peliculas en session o local storage para que luego se pueda recuperar y seguir agregando o eliminando
 
-
 ##TP Clase t
 # Mejorar el modulo IMDB
 ​
@@ -125,6 +124,8 @@ var elegirPelicula = function(mensaje){
 
 var renderDom = function (h1,p,img){
     var contenedor = document.querySelector("#contenedor") 
+    var boxCont = document.createElement("div");
+    boxCont.className = "boxCont"
     var nodoH1 = document.createElement("h1");                
     var nodoP = document.createElement("p");                
     var nodoImg = document.createElement("img");                
@@ -134,9 +135,10 @@ var renderDom = function (h1,p,img){
     nodoH1.appendChild(textH1);                              
     nodoP.appendChild(textP);                              
     nodoImg.appendChild(textImg);                              
-   contenedor.appendChild(nodoH1); 
-   contenedor.appendChild(nodoP); 
-   contenedor.appendChild(nodoImg).src = img;
+    boxCont.appendChild(nodoH1); 
+    boxCont.appendChild(nodoP); 
+    boxCont.appendChild(nodoImg).src = img;
+    contenedor.appendChild(boxCont)
 }
 
 var addPelicula = function(){

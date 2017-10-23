@@ -1,0 +1,21 @@
+body {
+  color: #333;
+}
+
+#contenedor {
+  display: flex;
+  flex-flow: row;
+}
+
+.boxCont {
+  background-color: #cccccc;
+  margin: 2px;
+  padding: 5px;
+}
+
+.boxCont > img {
+  width: 25%;
+}
+ 
+
+ /*# sourceMappingURL= style.css.map */

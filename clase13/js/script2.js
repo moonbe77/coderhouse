@@ -1,5 +1,7 @@
 var page=0
 var arrayObjetosPersonajes = []
+var arrayObjetosPlanetas = []
+var arrayObjetosSpecie = []
 var qtyPersonajesCargar = 0
 var PersonajesCargarados = 0
 var Personaje = function (name,birth,homeworld,films,species){
@@ -29,7 +31,7 @@ $(document).ready(function(){
     });
 
 
-var callApi = function (nextUrl) {   
+var callAPI = function (nextUrl) {   
     $.ajax({
         type:"json",
         url: nextUrl,
@@ -38,39 +40,29 @@ var callApi = function (nextUrl) {
         dataType: "json",
         beforeSend: function (nextUrl) {
             //console.log("///////////////"+nextUrl)
-            $("#mensajes").text("Buscando Personajes en " + nextUrl )
+            $("#mensajes").text("Buscando en " + nextUrl )
             },
         success: function (response) {       
             result = response.results 
-            cargaDePersonajes(result)        
+            arrayPush(resultCallApi)        
         },
         error: function(data){
-            console.log("ERROR spices")
+            console.log("ERROR")
         },
         complete: function (xhr,status){
-                console.log("COMPLETO pagina: "+page)
-                page++
-                PersonajesCargarados +=result.length                            
+                console.log("COMPLETO "+ nextUrl)                          
 
             //instancia para recorrer las paginas de la api
             if  (xhr.responseJSON.next == null){
                 console.log("no hay mas paginas")
-                $(".loader").hide()
-                //el parametro "0" es el primer indice [0] para la iteracion de el array de objetos
-                returnHomeworld(0)
+                $(".loader").hide()                
             }else{
-                if( PersonajesCargarados < qtyPersonajesCargar ){
-                    //console.log(xhr.responseJSON.next)
-                    callApi(xhr.responseJSON.next)
-                }else{
-                    returnHomeworld(0)
-                }
-            }
+                callApi(xhr.responseJSON.next)                         }
         }
     })
 }
    
-var cargaDePersonajes = function (result){    
+var arrayPush = function (resultCallApi, cualArray){    
     for (var datos in result) {
         var value = result[datos]
         $("#mensajes").text("Cargando Personajes en " + value.name )
